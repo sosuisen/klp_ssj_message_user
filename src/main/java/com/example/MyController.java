@@ -149,4 +149,11 @@ public class MyController {
 		usersDAO.create(user);
 		return "redirect:users";
 	}
+	
+	@POST
+	@Path("user_delete")
+	public String deleteUser(@FormParam("name") String name) throws SQLException {
+		usersDAO.delete(name);
+		return "redirect:users";
+	}
 }

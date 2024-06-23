@@ -71,4 +71,13 @@ public class UsersDAO {
 		}
 	}
 	
+	public void delete(String name) throws SQLException {
+		try (
+				Connection conn = ds.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement("DELETE FROM users WHERE name=?");) {
+			pstmt.setString(1, name);
+			pstmt.executeUpdate();
+		}
+	}
+	
 }
