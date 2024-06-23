@@ -156,4 +156,15 @@ public class MyController {
 		usersDAO.delete(name);
 		return "redirect:users";
 	}
+	
+	@POST
+	@Path("user_update")
+	public String updateUser(@BeanParam UserDTO user) throws SQLException {
+		if (!user.getPassword().equals("")) {
+			var hash = passwordHash.generate(user.getPassword().toCharArray());
+			user.setPassword(hash);
+		}
+		usersDAO.update(user);
+		return "redirect:users";
+	}
 }

@@ -70,7 +70,7 @@ public class UsersDAO {
 			pstmt.executeUpdate();
 		}
 	}
-	
+
 	public void delete(String name) throws SQLException {
 		try (
 				Connection conn = ds.getConnection();
@@ -79,5 +79,26 @@ public class UsersDAO {
 			pstmt.executeUpdate();
 		}
 	}
-	
+
+	public void update(UserDTO userDTO) throws SQLException {
+		try (
+				Connection conn = ds.getConnection()) {
+			if (userDTO.getPassword().equals(""))
+				try (PreparedStatement pstmt = conn.prepareStatement("UPDATE users SET role=? where name=?")) {
+					pstmt.setString(1, userDTO.getRole());
+					pstmt.setString(2, userDTO.getName());
+					pstmt.executeUpdate();
+
+				}
+			else
+				try (PreparedStatement pstmt = conn
+						.prepareStatement("UPDATE users SET role=?,password=? where name=?")) {
+					pstmt.setString(1, userDTO.getRole());
+					pstmt.setString(2, userDTO.getPassword());
+					pstmt.setString(3, userDTO.getName());
+					pstmt.executeUpdate();
+				}
+		}
+	}
+
 }
