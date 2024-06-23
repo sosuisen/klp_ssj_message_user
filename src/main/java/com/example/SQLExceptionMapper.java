@@ -1,4 +1,4 @@
-package com.example.model;
+package com.example;
 
 import java.sql.SQLException;
 import java.util.logging.Level;
