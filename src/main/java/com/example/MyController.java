@@ -18,6 +18,7 @@ import jakarta.mvc.Models;
 import jakarta.security.enterprise.identitystore.Pbkdf2PasswordHash;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.ws.rs.BeanParam;
+import jakarta.ws.rs.FormParam;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
