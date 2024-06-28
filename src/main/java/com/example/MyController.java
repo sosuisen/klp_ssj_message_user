@@ -18,10 +18,10 @@ import jakarta.mvc.Models;
 import jakarta.security.enterprise.identitystore.Pbkdf2PasswordHash;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.ws.rs.BeanParam;
-import jakarta.ws.rs.FormParam;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.QueryParam;
 import lombok.NoArgsConstructor;
 import lombok.extern.java.Log;
 
@@ -127,9 +127,9 @@ public class MyController {
 		return "redirect:login";
 	}
 
-	@POST
+	@GET
 	@Path("search")
-	public String postSearch(@FormParam("keyword") String keyword) throws SQLException {
+	public String getSearch(@QueryParam("keyword") String keyword) throws SQLException {
 		models.put("messages", messagesDAO.search(keyword));
 		return "list.jsp";
 	}
